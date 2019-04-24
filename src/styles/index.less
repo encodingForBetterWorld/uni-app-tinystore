@@ -1,0 +1,127 @@
+@primary-color: #d22222;
+
+.animation(@animation-name,@animation-duration){
+  -webkit-animation: @arguments;
+  -moz-animation: @arguments;
+  -ms-animation: @arguments;
+  -o-animation:  @arguments;
+  animation: @arguments;
+}
+.modal-animation(@name, @top-begin, @top-end, @opacity-begin, @opacity-end){
+  @keyframes @name{
+    from {
+      top: @top-begin;
+      opacity: @opacity-begin
+    }
+    to {
+      top: @top-end;
+      opacity: @opacity-end
+    }
+  }
+  @-webkit-keyframes @name{
+    from {
+      top: @top-begin;
+      opacity: @opacity-begin
+    }
+    to {
+      top: @top-end;
+      opacity: @opacity-end
+    }
+  }
+  @-moz-keyframes @name{
+    from {
+      top: @top-begin;
+      opacity: @opacity-begin
+    }
+    to {
+      top: @top-end;
+      opacity: @opacity-end
+    }
+  }
+  @-o-keyframes @name{
+    from {
+      top: @top-begin;
+      opacity: @opacity-begin
+    }
+    to {
+      top: @top-end;
+      opacity: @opacity-end
+    }
+  }
+}
+.modal-animation-pay(@name, @scale-begin, @scale-end, @opacity-begin, @opacity-end){
+  @keyframes @name{
+    from {
+      transform: scale(1, @scale-begin);
+      opacity: @opacity-begin
+    }
+    to {
+      transform: scale(1, @scale-end);
+      opacity: @opacity-end
+    }
+  }
+  @-webkit-keyframes @name{
+    from {
+      transform: scale(1, @scale-begin);
+      opacity: @opacity-begin
+    }
+    to {
+      transform: scale(1, @scale-end);
+      opacity: @opacity-end
+    }
+  }
+  @-moz-keyframes @name{
+    from {
+      transform: scale(1, @scale-begin);
+      opacity: @opacity-begin
+    }
+    to {
+      transform: scale(1, @scale-end);
+      opacity: @opacity-end
+    }
+  }
+  @-o-keyframes @name{
+    from {
+      transform: scale(1, @scale-begin);
+      opacity: @opacity-begin
+    }
+    to {
+      transform: scale(1, @scale-end);
+      opacity: @opacity-end
+    }
+  }
+}
+.section-animation(@name, @width-begin, @width-end){
+  @keyframes @name{
+    from {
+      width: @width-begin
+    }
+    to {
+      width: @width-end
+    }
+  }
+  @-webkit-keyframes @name{
+    from {
+      width: @width-begin
+    }
+    to {
+      width: @width-end
+    }
+  }
+  @-moz-keyframes @name{
+    from {
+      width: @width-begin
+    }
+    to {
+      width: @width-end
+    }
+  }
+  @-o-keyframes @name{
+    from {
+      width: @width-begin
+    }
+    to {
+      width: @width-end
+    }
+  }
+}

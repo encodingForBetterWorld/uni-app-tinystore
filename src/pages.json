@@ -1,0 +1,99 @@
+{
+	"pages": [
+    {
+      "path": "pages/tab/index",
+      "style": {
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/tab/cart",
+      "style": {
+        "navigationBarTitleText": "购物车",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/tab/my",
+      "style": {
+        "navigationBarTitleText": "我的",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/detail/goods",
+      "style": {
+        "navigationBarTitleText": "商品详情"
+      }
+    },
+    {
+      "path": "pages/detail/order-confirm",
+      "style": {
+        "navigationBarTitleText": "确认订单"
+      }
+    },
+    {
+      "path": "pages/detail/order",
+      "style": {
+        "navigationBarTitleText": "订单详情"
+      }
+    },
+    {
+      "path": "pages/settings/index",
+      "style": {
+        "navigationBarTitleText": "设置"
+      }
+    },
+    {
+      "path": "pages/settings/address/index",
+      "style": {
+        "navigationBarTitleText": "收货地址",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/settings/address/add",
+      "style": {
+        "navigationBarTitleText": "添加收货地址"
+      }
+    },
+    {
+      "path": "pages/settings/address/edit",
+      "style": {
+        "navigationBarTitleText": "修改收货地址"
+      }
+    }
+	],
+	"globalStyle": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "微信小店",
+    "navigationBarTextStyle": "black"
+	},
+  "tabBar": {
+    "color": "#252E39",
+    "selectedColor": "#0B0B0A",
+    "borderStyle": "white",
+    "backgroundColor": "#FFF",
+    "list": [
+      {
+        "pagePath": "pages/tab/index",
+        "text": "首页",
+        "iconPath": "static/assets/fa-home.png",
+        "selectedIconPath": "static/assets/fa-home-focus.png"
+      },
+      {
+        "pagePath": "pages/tab/cart",
+        "text": "购物车",
+        "iconPath": "static/assets/fa-cart.png",
+        "selectedIconPath": "static/assets/fa-cart-focus.png"
+      },
+      {
+        "pagePath": "pages/tab/my",
+        "text": "我的",
+        "iconPath": "static/assets/fa-user.png",
+        "selectedIconPath": "static/assets/fa-user-focus.png"
+      }
+    ]
+  }
+}

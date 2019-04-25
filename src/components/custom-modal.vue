@@ -506,14 +506,18 @@ export default {
   }
   .modal-content-goods-count input{
     text-align: center;
-    border-left: 1.5px solid #cacaca;
-    border-right: 1.5px solid #cacaca;
     font-size: 15px;
   }
   .count-operator{
     width: 100px;
     text-align: center;
     padding: 5px 0;
+  }
+  .count-operator:first-of-type{
+    border-right: 1.5px solid #cacaca;
+  }
+  .count-operator:last-of-type{
+    border-left: 1.5px solid #cacaca;
   }
   .modal-section-pay-btngroup{
     display: flex;

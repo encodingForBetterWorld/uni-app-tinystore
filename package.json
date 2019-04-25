@@ -26,7 +26,6 @@
     "flyio": "^0.6.2",
     "vue": "^2.5.22",
     "vuex": "^3.0.1",
-    "xmlstring2json": "^0.1.9",
     "clipboard": "*"
   },
   "devDependencies": {

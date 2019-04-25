@@ -1,8 +1,8 @@
 <template lang="pug">
 div
   .container
-    order-address-section(v-if="order.address"
-    :address="order.address"
+    order-address-section(v-if="orderAddress"
+    :address="orderAddress"
     modalDisable="false")
     .section.order-content(v-if="order.orderitem_set && order.orderitem_set.length > 0")
       .order-goods-list
@@ -55,6 +55,19 @@ export default {
       default () {
         return {}
       }
+    },
+    orderAddress: {
+      type: Object,
+      default () {
+        return {
+          name: null,
+          phone: null,
+          province: null,
+          city: null,
+          area: null,
+          detail: null
+        }
+      }
     }
   },
   onShow () {
@@ -74,6 +87,12 @@ export default {
         })
       }
       this.order = data
+      this.orderAddress.name = data.addressee_name
+      this.orderAddress.phone = data.addressee_phone
+      this.orderAddress.province = data.addressee_province
+      this.orderAddress.city = data.addressee_city
+      this.orderAddress.area = data.addressee_area
+      this.orderAddress.detail = data.addressee_detail
       this.$store.commit('totalPrice', data.total_price)
       this.$store.commit('freight', data.freight)
     },

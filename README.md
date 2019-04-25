@@ -1,6 +1,6 @@
 # tinystore
 
-> 微信小店（使用 uni-app 开发，多端兼容）
+> [微信小店](https://h5tinystore.33code.online)（基于uni-app开发，多端兼容）
 
 ## 截图展示
 

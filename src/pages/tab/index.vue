@@ -2,8 +2,8 @@
 .container
   swiper.slider-wrap.section(
   v-if="banners.length",
-  indicator-dots,
-  autoplay,
+  :indicator-dots="banners.length > 1",
+  :autoplay="banners.length > 1",
   circular,
   interval=5000,
   duration=1000)

@@ -362,6 +362,7 @@ export default {
     height: 140px;
     margin-top: -70px;
     border-radius: 12px;
+    background-color: #FFF;
   }
   .modal-title-goods > div > image{
     border-radius: 6px;

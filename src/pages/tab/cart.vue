@@ -148,6 +148,7 @@ export default {
             v.list = list
             v.selectedList = selectedList
             v.deleteId = null
+            v.currIdx = null
             if (selectedList.length === 0) {
               v.btnText = null
             }

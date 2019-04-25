@@ -1,7 +1,7 @@
 <template lang="pug">
 .section-item.item-cart(
   :class="item.id==deleteId?'section-delete':'section'"
-  :style="'margin-left:'+(distX&&(index==currIdx)?(-1*distX+'%'):'')"
+  :style="'margin-left:'+(distX&&(index==currIdx)?(-1*distX+'%'):'0')"
   @touchstart="touchStart"
   @touchmove="touchMove"
   @touchend="touchEnd"

@@ -227,7 +227,7 @@ export default {
     font-size: 16px;
     color: #FFF;
     background-color: #D0021B;
-    padding: 8px 10px;
+    /*padding: 8px 10px;*/
     text-align:center;
   }
   .btn-delete-blank {

@@ -2,14 +2,18 @@ import api from './api'
 const btn = {
   touchStart (e) {
     this.startX = e.touches[0].clientX
-    this.currIdx = e.currentTarget.dataset['index']
+    let currIdx = e.currentTarget.dataset['index']
+    if (currIdx !== this.currIdx) {
+      this.distX = 0
+    }
+    this.currIdx = currIdx
   },
   touchMove (e) {
     let touch = e.touches[0]
     let distX = (this.startX - touch.clientX) * 100 / window.innerWidth
     if (distX >= 10) {
       this.deleteId = this.list[this.currIdx].id
-    } else if (distX <= 0) {
+    } else if (distX < 0) {
       if (this.list[this.currIdx].id === this.deleteId) {
         this.deleteId = null
       }
@@ -17,10 +21,14 @@ const btn = {
     this.distX = Math.min(Math.max(distX, 0), 10)
   },
   touchEnd (e) {
-    if (!this.deleteId) {
-      this.startX = 0
-      this.currIdx = null
-      this.distX = 0
+    let distX = Math.abs(this.startX - e.changedTouches[0].clientX) * 100 / window.innerWidth
+    if (distX < 10) {
+      if (this.list[this.currIdx].id === this.deleteId) {
+        this.distX = 10
+      } else {
+        this.distX = 0
+        this.currIdx = null
+      }
     }
   },
   turn (url) {

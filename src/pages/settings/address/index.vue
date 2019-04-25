@@ -8,7 +8,7 @@
     .pl-addresses-list
       .pl-address-item(v-for="(item, index) of list"
       :class="item.id==deleteId?'section-delete':''"
-      :style="'margin-left:'+(distX&&(index==currIdx)?(-1*distX+'%'):'')"
+      :style="'margin-left:'+(distX&&(index==currIdx)?(-1*distX+'%'):'0')"
       :data-index="index"
       @touchstart="touchStart"
       @touchmove="touchMove"

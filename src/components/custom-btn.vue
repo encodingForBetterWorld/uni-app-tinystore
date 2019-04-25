@@ -87,6 +87,7 @@
     padding: 3px 15px;
     color: #FFF;
     font-size: 16px;
+    flex-shrink: 0;
   }
   .btn-tab{
     margin-bottom: 50px!important;

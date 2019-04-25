@@ -1,4 +1,5 @@
 import api from './api'
+const delBtnWidth = 36
 const btn = {
   touchStart (e) {
     this.startX = e.touches[0].clientX
@@ -6,27 +7,27 @@ const btn = {
     if (currIdx !== this.currIdx) {
       this.distX = 0
     } else if (this.deleteId) {
-      this.startX += (window.innerWidth * 0.1)
+      this.startX += delBtnWidth
     }
     this.currIdx = currIdx
   },
   touchMove (e) {
     let touch = e.touches[0]
-    let distX = (this.startX - touch.clientX) * 100 / window.innerWidth
-    if (distX >= 10) {
+    let distX = this.startX - touch.clientX
+    if (distX >= delBtnWidth) {
       this.deleteId = this.list[this.currIdx].id
     } else if (distX < 0) {
       if (this.list[this.currIdx].id === this.deleteId) {
         this.deleteId = null
       }
     }
-    this.distX = Math.min(Math.max(distX, 0), 10)
+    this.distX = Math.min(Math.max(distX, 0), delBtnWidth)
   },
   touchEnd (e) {
-    let distX = Math.abs(this.startX - e.changedTouches[0].clientX) * 100 / window.innerWidth
-    if (distX < 10) {
+    let distX = this.startX - e.changedTouches[0].clientX
+    if (distX < delBtnWidth) {
       if (this.list[this.currIdx].id === this.deleteId) {
-        this.distX = 10
+        this.distX = delBtnWidth
       } else {
         this.distX = 0
         this.currIdx = null

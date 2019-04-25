@@ -221,19 +221,18 @@ export default {
     margin-left: -48px;
   }
   .btn-delete{
-    width: 10%;
+    width: 36px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 16px;
     color: #FFF;
     background-color: #D0021B;
-    /*padding: 8px 10px;*/
+    padding: 4px 10px;
     text-align:center;
-  }
-  .btn-delete-blank {
-    width: 10%;
-    background-color: #EDEDED;
+    height: inherit;
+    position: absolute;
+    left: 100%;
   }
 
   /* 加载动画 */

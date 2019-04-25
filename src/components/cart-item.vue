@@ -1,35 +1,33 @@
 <template lang="pug">
-.section-item.item-cart(
-  :class="item.id==deleteId?'section-delete':'section'"
-  :style="'margin-left:'+(distX&&(index==currIdx)?(-1*distX+'%'):'0')"
-  @touchstart="touchStart"
-  @touchmove="touchMove"
-  @touchend="touchEnd"
-  @touchcancel="touchEnd"
-  :data-index="index")
-  .item-cart-info
-    image.item-cart-img(:src="baseAssetsApi + item.img"
-    mode='scaleToFill'
-    @click="turn")
-    .item-cart-content
-      .item-cart-title.title
-        checkbox(:value="index" :checked="checked")
-          div {{ item.goods.name }}
-      div
-        .item-cart-type 型号：{{ item.description }}
-        .price
-          span ¥{{item.price}}
-          span ×
-          span {{item.select_count}}
-  .item-cart-count-picker
-    .arrow.arrow-top(@click="cartCountEdit" :data-index="index" data-type='add' :data-id='item.id')
-    span {{item.select_count}}
-    .arrow.arrow-bottom(@click="cartCountEdit" :data-index="index" data-type='sub' :data-id='item.id')
+.item-cart-wrapper(:style="'transform:translateX('+(distX&&(index==currIdx)?(-1*distX+'px'):'0') + ')'"
+:data-index="index"
+@touchstart="touchStart"
+@touchmove="touchMove"
+@touchend="touchEnd"
+@touchcancel="touchEnd")
+  .section-item.item-cart
+    .item-cart-info
+      image.item-cart-img(:src="baseAssetsApi + item.img"
+      mode='scaleToFill'
+      @click="turn")
+      .item-cart-content
+        .item-cart-title.title
+          checkbox(:value="index" :checked="checked")
+            div {{ item.goods.name }}
+        div
+          .item-cart-type 型号：{{ item.description }}
+          .price
+            span ¥{{item.price}}
+            span ×
+            span {{item.select_count}}
+    .item-cart-count-picker
+      .arrow.arrow-top(@click="cartCountEdit" :data-index="index" data-type='add' :data-id='item.id')
+      span {{item.select_count}}
+      .arrow.arrow-bottom(@click="cartCountEdit" :data-index="index" data-type='sub' :data-id='item.id')
   .btn-delete(v-if="index==currIdx"
   @click="cartItemRemove"
   :data-index="index"
   :data-id="item.id") 删除
-  .btn-delete-blank(v-else)
 </template>
 
 <script>
@@ -80,9 +78,14 @@ export default {
 
 <style lang="less">
   @import (reference) "~@/styles/index.less";
-  .item-cart{
+  .item-cart-wrapper{
     height: 175px;
-    width: 110%;
+    display: flex;
+    margin: 2px 0;
+  }
+  .item-cart{
+    margin: 0!important;
+    width: 100%;
   }
   .item-cart-info {
     display: flex;

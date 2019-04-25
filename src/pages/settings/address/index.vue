@@ -6,28 +6,27 @@
       i.arrow.arrow-right
   .pl-settings
     .pl-addresses-list
-      .pl-address-item(v-for="(item, index) of list"
-      :class="item.id==deleteId?'section-delete':''"
-      :style="'margin-left:'+(distX&&(index==currIdx)?(-1*distX+'%'):'0')"
+      .pl-address-wrapper(v-for="(item, index) of list"
+      :style="'transform:translateX('+(distX&&(index==currIdx)?(-1*distX+'px'):'0') + ')'"
       :data-index="index"
       @touchstart="touchStart"
       @touchmove="touchMove"
       @touchend="touchEnd"
       @touchcancel="touchEnd")
-        .user-adderss-info
-          div
-            .user-adderss-info-name {{item.name}}
-              span(v-if="item.is_default") （默认）
-            div {{item.phone}}
-          div {{item.province + item.city + item.area + item.detail}}
-        .user-adderss-edit(@click="turn('/pages/settings/address/edit?id='+item.id)")
-          image.fa-icon(src="/static/assets/fa-edit.png"
-          mode='scaleToFill')
+        .pl-address-item
+          .user-adderss-info
+            div
+              .user-adderss-info-name {{item.name}}
+                span(v-if="item.is_default") （默认）
+              div {{item.phone}}
+            div {{item.province + item.city + item.area + item.detail}}
+          .user-adderss-edit(@click="turn('/pages/settings/address/edit?id='+item.id)")
+            image.fa-icon(src="/static/assets/fa-edit.png"
+            mode='scaleToFill')
         .btn-delete(v-if="index==currIdx"
         @click="deleteAddress"
         :data-index="index"
         :data-id="item.id") 删除
-        .btn-delete-blank(v-else)
 </template>
 
 <script>
@@ -97,12 +96,16 @@
     display: flex;
     flex-flow: column nowrap;
   }
+  .pl-address-wrapper {
+    height: 96px;
+    display: flex;
+    margin-bottom: 1.5px;
+  }
   .pl-address-item{
     display: flex;
     justify-content: space-between;
-    border-bottom: 1.5px solid #EDEDED;
     background-color: #FFF;
-    width: 110%;
+    width: 100%;
   }
   .user-adderss-edit{
     display: flex;

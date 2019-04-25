@@ -27,6 +27,7 @@ export default {
 </script>
 
 <style lang="less">
+  @import (reference) "~@/styles/index.less";
   .order-section{
     margin: 0 6px;
     min-height: 160px;
@@ -48,17 +49,22 @@ export default {
     justify-content: space-between;
   }
   .order-section > div:nth-of-type(1){
-    margin: 15px 16px;
     justify-content: space-between;
     width:320px;
   }
   .order-section > div:nth-of-type(2){
-    margin: 15px 16px;
     justify-content: start;
+  }
+  .order-section > div{
+    margin: 15px 8px;
+  }
+  .item-order-content > div{
+    #text
   }
   .item-order-content-type{
     font-size:14px;
     color: #b1b1b1;
+    -webkit-line-clamp: 3!important;
   }
   .item-order-content-price{
     font-size: 16px;

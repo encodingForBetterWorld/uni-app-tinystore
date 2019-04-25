@@ -9,7 +9,8 @@
   @click="turn")
   .item-cart-content
     .item-cart-title.title
-      checkbox(:value="index" :checked="checked") {{ item.goods.name }}
+      checkbox(:value="index" :checked="checked")
+        div {{ item.goods.name }}
     div
       .item-cart-type 型号：{{ item.description }}
       .price
@@ -68,6 +69,7 @@ export default {
 </script>
 
 <style lang="less">
+  @import (reference) "~@/styles/index.less";
   .item-cart{
     height: 175px;
     width: auto !important;
@@ -97,13 +99,20 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    max-width: 118px;
+  }
+  .item-cart-content div {
+    #text
   }
   .item-cart-title{
     display: flex;
-    align-content: center
+    align-content: center;
+  }
+  uni-checkbox .uni-checkbox-input{
+    flex-shrink: 0!important;
   }
   .item-cart-count-picker{
-    flex-basis: 60px;
+    min-width: 42px;
     height: 168px;
     display: flex;
     flex-flow: column nowrap;

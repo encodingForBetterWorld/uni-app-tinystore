@@ -31,6 +31,7 @@
 </script>
 
 <style lang="less">
+  @import (reference) "~@/styles/index.less";
   .item-goods-img{
     padding: 5px 8px;
     max-width: 46%;
@@ -49,11 +50,7 @@
     max-width: 50%;
     div{
       font-weight: bold;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box!important;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
+      #text
     }
     .price {
       color: #8b572a

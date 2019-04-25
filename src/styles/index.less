@@ -123,6 +123,40 @@
     }
   }
 }
+.section-delete-animation(@name, @margin-left-begin, @margin-left-end){
+  @keyframes @name{
+    from {
+      margin-left: @margin-left-begin
+    }
+    to {
+      margin-left: @margin-left-end
+    }
+  }
+  @-webkit-keyframes @name{
+    from {
+      margin-left: @margin-left-begin
+    }
+    to {
+      margin-left: @margin-left-end
+    }
+  }
+  @-moz-keyframes @name{
+    from {
+      margin-left: @margin-left-begin
+    }
+    to {
+      margin-left: @margin-left-end
+    }
+  }
+  @-o-keyframes @name{
+    from {
+      margin-left: @margin-left-begin
+    }
+    to {
+      margin-left: @margin-left-end
+    }
+  }
+}
 #text {
   overflow: hidden;
   text-overflow: ellipsis;

@@ -1,30 +1,35 @@
 <template lang="pug">
 .section-item.item-cart(
   :class="item.id==deleteId?'section-delete':'section'"
+  :style="'margin-left:'+(distX&&(index==currIdx)?(-1*distX+'%'):'')"
   @touchstart="touchStart"
   @touchmove="touchMove"
+  @touchend="touchEnd"
+  @touchcancel="touchEnd"
   :data-index="index")
-  image.item-cart-img(:src="baseAssetsApi + item.img"
-  mode='scaleToFill'
-  @click="turn")
-  .item-cart-content
-    .item-cart-title.title
-      checkbox(:value="index" :checked="checked")
-        div {{ item.goods.name }}
-    div
-      .item-cart-type 型号：{{ item.description }}
-      .price
-        span ¥{{item.price}}
-        span ×
-        span {{item.select_count}}
+  .item-cart-info
+    image.item-cart-img(:src="baseAssetsApi + item.img"
+    mode='scaleToFill'
+    @click="turn")
+    .item-cart-content
+      .item-cart-title.title
+        checkbox(:value="index" :checked="checked")
+          div {{ item.goods.name }}
+      div
+        .item-cart-type 型号：{{ item.description }}
+        .price
+          span ¥{{item.price}}
+          span ×
+          span {{item.select_count}}
   .item-cart-count-picker
     .arrow.arrow-top(@click="cartCountEdit" :data-index="index" data-type='add' :data-id='item.id')
     span {{item.select_count}}
     .arrow.arrow-bottom(@click="cartCountEdit" :data-index="index" data-type='sub' :data-id='item.id')
-  .btn-delete(v-if="item.id==deleteId"
+  .btn-delete(v-if="index==currIdx"
   @click="cartItemRemove"
   :data-index="index"
   :data-id="item.id") 删除
+  .btn-delete-blank(v-else)
 </template>
 
 <script>
@@ -32,6 +37,8 @@ import { mapState } from 'vuex'
 export default {
   props: {
     deleteId: null,
+    currIdx: null,
+    distX: null,
     index: null,
     checked: null,
     item: {
@@ -59,6 +66,9 @@ export default {
     touchMove (e) {
       this.$parent.$parent.touchMove(e)
     },
+    touchEnd (e) {
+      this.$parent.$parent.touchEnd(e)
+    },
     turn () {
       uni.navigateTo({
         url: `/pages/detail/goods?goodsId=${this.item.goods.id}`
@@ -72,7 +82,11 @@ export default {
   @import (reference) "~@/styles/index.less";
   .item-cart{
     height: 175px;
-    width: auto !important;
+    width: 110%;
+  }
+  .item-cart-info {
+    display: flex;
+    width: 90%;
   }
   .item-cart-img{
     width: 160px;
@@ -108,10 +122,8 @@ export default {
     display: flex;
     align-content: center;
   }
-  uni-checkbox .uni-checkbox-input{
-    flex-shrink: 0!important;
-  }
   .item-cart-count-picker{
+    width: 10%;
     min-width: 42px;
     height: 168px;
     display: flex;

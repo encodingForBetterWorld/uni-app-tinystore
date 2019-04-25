@@ -217,9 +217,10 @@ export default {
     height: 18px;
   }
   .section-delete{
-    margin-left: -160px;
+    margin-left: -48px;
   }
   .btn-delete{
+    width: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -228,6 +229,10 @@ export default {
     background-color: #D0021B;
     padding: 8px 10px;
     text-align:center;
+  }
+  .btn-delete-blank {
+    width: 10%;
+    background-color: #EDEDED;
   }
 
   /* 加载动画 */

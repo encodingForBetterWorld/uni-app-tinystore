@@ -7,10 +7,13 @@
   .pl-settings
     .pl-addresses-list
       .pl-address-item(v-for="(item, index) of list"
-      :class="item.id==deleteId?' section-delete':''"
+      :class="item.id==deleteId?'section-delete':''"
+      :style="'margin-left:'+(distX&&(index==currIdx)?(-1*distX+'%'):'')"
       :data-index="index"
       @touchstart="touchStart"
-      @touchmove="touchMove")
+      @touchmove="touchMove"
+      @touchend="touchEnd"
+      @touchcancel="touchEnd")
         .user-adderss-info
           div
             .user-adderss-info-name {{item.name}}
@@ -20,10 +23,11 @@
         .user-adderss-edit(@click="turn('/pages/settings/address/edit?id='+item.id)")
           image.fa-icon(src="/static/assets/fa-edit.png"
           mode='scaleToFill')
-        .btn-delete(v-if="item.id==deleteId"
+        .btn-delete(v-if="index==currIdx"
         @click="deleteAddress"
         :data-index="index"
         :data-id="item.id") 删除
+        .btn-delete-blank(v-else)
 </template>
 
 <script>
@@ -34,6 +38,7 @@
       startX: null,
       deleteId: null,
       currIdx: null,
+      distX: null,
       list: {
         type: Array,
         default () {
@@ -72,6 +77,7 @@
               list.splice(idx, 1)
               v.list = list
               v.deleteId = null
+              v.currIdx = null
               uni.showToast({
                 title: '删除地址成功'
               })
@@ -96,10 +102,15 @@
     justify-content: space-between;
     border-bottom: 1.5px solid #EDEDED;
     background-color: #FFF;
+    width: 110%;
   }
   .user-adderss-edit{
     display: flex;
+    justify-content: center;
     align-items: center;
-    padding: 8px 16px;
+    width: 10%;
+  }
+  .user-adderss-info {
+    width: 90%!important;
   }
 </style>

@@ -6,13 +6,21 @@ const btn = {
   },
   touchMove (e) {
     let touch = e.touches[0]
-    let distX = this.startX - touch.clientX
-    if (distX >= 100) {
+    let distX = (this.startX - touch.clientX) * 100 / window.innerWidth
+    if (distX >= 10) {
       this.deleteId = this.list[this.currIdx].id
-    } else if (distX <= -100) {
+    } else if (distX <= 0) {
       if (this.list[this.currIdx].id === this.deleteId) {
         this.deleteId = null
       }
+    }
+    this.distX = Math.min(Math.max(distX, 0), 10)
+  },
+  touchEnd (e) {
+    if (!this.deleteId) {
+      this.startX = 0
+      this.currIdx = null
+      this.distX = 0
     }
   },
   turn (url) {

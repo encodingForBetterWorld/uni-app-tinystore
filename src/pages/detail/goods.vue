@@ -19,7 +19,6 @@ div
 
 <script>
 import customModal from '@/components/custom-modal'
-import api from '@/utils/api'
 import { mapState, mapActions } from 'vuex'
 export default {
   components: {

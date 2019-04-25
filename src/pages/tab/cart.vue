@@ -6,6 +6,8 @@
       v-for="(item, index) of list"
       :item="item"
       :index="index"
+      :currIdx="currIdx"
+      :distX="distX"
       :checked="item.checked"
       :deleteId="deleteId")
   custom-btn(v-if="btnText"
@@ -32,6 +34,7 @@ export default {
     startX: null,
     deleteId: null,
     currIdx: null,
+    distX: null,
     btnText: null,
     checkedAll: null,
     selectedList: {

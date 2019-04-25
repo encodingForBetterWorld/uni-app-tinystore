@@ -28,7 +28,7 @@ div
         :index="index"
         :checked="item.checked")
       .btn-footer(v-if="headerOrderStatus==0")
-    custom-btn(v-if="btnText && headerOrderStatus==0"
+    custom-btn(v-if="(btnText != void 0) && (headerOrderStatus===0)"
     btnType='pay'
     :text="btnText"
     :checked="checkedAll"
@@ -57,8 +57,18 @@ export default {
   },
   props: {
     checkedAll: null,
-    btnText: null,
-    isHeaderShow: null,
+    btnText: {
+      type: String,
+      default () {
+        return void 0
+      }
+    },
+    isHeaderShow: {
+      type: Number,
+      default () {
+        return void 0
+      }
+    },
     orders: {
       type: Array,
       default () {

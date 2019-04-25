@@ -6,6 +6,7 @@ export default {
 <style lang="less">
   body{
     background-color: #EDEDED;
+    overflow: hidden auto;
   }
   div, span, label{
     font-family: "microsoft yahei"

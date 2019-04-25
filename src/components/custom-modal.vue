@@ -104,8 +104,18 @@ export default {
     addressSection
   },
   props: {
-    sectionIdx: null,
-    selectedAddressIdx: null,
+    sectionIdx: {
+      type: Number,
+      default () {
+        return 0
+      }
+    },
+    selectedAddressIdx: {
+      type: Number,
+      default () {
+        return 0
+      }
+    },
     selectedAddress: null
   },
   computed: {
@@ -122,8 +132,6 @@ export default {
     ])
   },
   mounted () {
-    this.sectionIdx = 0
-    this.selectedAddressIdx = 0
     Clipboards.forEach(n => {
       new Clipboard(n).on('success', e => {
         uni.showToast({
@@ -235,6 +243,7 @@ export default {
     },
     checkAddress (e) {
       this.selectedAddressIdx = e.detail.value
+      console.log(e.detail.value)
     },
     selectGoodsType: function (e) {
       let idx = Number(e.currentTarget.dataset['index'])

@@ -503,10 +503,16 @@ export default {
     flex-flow: row wrap;
   }
   .modal-content-goods-types-item{
+    #text;
+    width: 120px;
+    line-height: 20px;
+    vertical-align: middle;
     margin: 8px 4px;
-    padding: 4px 10px;
+    padding: 5px 10px;
     border: 1.5px solid #cacaca;
     text-align: center;
+    font-size: 14px;
+    -webkit-line-clamp: 1;
   }
   .modal-content-goods-count{
     width: 40%;

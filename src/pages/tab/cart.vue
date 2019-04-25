@@ -1,6 +1,6 @@
 <template lang="pug">
 .container
-  .section.btn-footer
+  .section.btn-footer(v-if="list && list.length > 0")
     checkbox-group(@change="checkCartPay")
       cart-item(ref='pay-bn'
       v-for="(item, index) of list"
@@ -10,6 +10,8 @@
       :distX="distX"
       :checked="item.checked"
       :deleteId="deleteId")
+  no-content(v-else
+  text='购物车空空如也')
   custom-btn(v-if="btnText"
   btnType='pay'
   :text="btnText"
@@ -22,13 +24,15 @@
 import { mapState } from 'vuex'
 import cartItem from '@/components/cart-item'
 import customBtn from '@/components/custom-btn'
+import noContent from '@/components/nocontent'
 import api from '@/utils/api'
 import btn from '@/utils/btn'
 import { cartAdd, cartRemove, cartCount, setCartTabBarBadge } from '@/utils'
 export default {
   components: {
     cartItem,
-    customBtn
+    customBtn,
+    noContent
   },
   props: {
     startX: null,

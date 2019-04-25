@@ -15,20 +15,24 @@
       image.slider-item(:src="baseAssetsApi + banner.img"
       mode='scaleToFill'
       @click="turn(banner)")
-  .section.container-goods.btn-footer
+  .section.container-goods.btn-footer(v-if="goodies&&goodies.length>0")
     goods-item(
     v-for="goods of goodies",
     :goods="goods"
     :key="goods.id")
+  no-content(v-else
+  text='暂无商品')
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex'
 import goodsItem from '@/components/goods-item'
 import { setCartTabBarBadge } from '@/utils'
+import noContent from '@/components/nocontent'
 export default {
   components: {
-    goodsItem
+    goodsItem,
+    noContent
   },
   computed: {
     ...mapState([

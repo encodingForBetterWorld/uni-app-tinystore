@@ -28,6 +28,8 @@ div
         :index="index"
         :checked="item.checked")
       .btn-footer(v-if="headerOrderStatus==0")
+    no-content(v-else
+    :text="'暂无'+ orderSelections[headerOrderStatus||0][1] +'订单'")
     custom-btn(v-if="(btnText != void 0) && (headerOrderStatus===0)"
     btnType='pay'
     :text="btnText"
@@ -42,13 +44,14 @@ div
 import orderItem from '@/components/order-item'
 import customBtn from '@/components/custom-btn'
 import customModal from '@/components/custom-modal'
+import noContent from '@/components/nocontent'
 import { mapState } from 'vuex'
 import api from '@/utils/api'
 import btn from '@/utils/btn'
 import { setCartTabBarBadge } from '@/utils'
 export default {
   components: {
-    orderItem, customBtn, customModal
+    orderItem, customBtn, customModal, noContent
   },
   computed: {
     ...mapState([

@@ -5,7 +5,7 @@
       span 添加收货地址
       i.arrow.arrow-right
   .pl-settings
-    .pl-addresses-list
+    .pl-addresses-list(v-if="list.length>0")
       .pl-address-wrapper(v-for="(item, index) of list"
       :style="'transform:translateX('+(distX&&(index==currIdx)?(-1*distX+'px'):'0') + ')'"
       :data-index="index"
@@ -27,12 +27,18 @@
         @click="deleteAddress"
         :data-index="index"
         :data-id="item.id") 删除
+    no-content(v-else
+    text='暂无收货地址')
 </template>
 
 <script>
   import btn from '@/utils/btn'
   import api from '@/utils/api'
+  import noContent from '@/components/nocontent'
   export default {
+    components: {
+      noContent
+    },
     props: {
       startX: null,
       deleteId: null,

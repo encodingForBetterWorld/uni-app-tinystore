@@ -5,6 +5,8 @@ const btn = {
     let currIdx = e.currentTarget.dataset['index']
     if (currIdx !== this.currIdx) {
       this.distX = 0
+    } else if (this.deleteId) {
+      this.startX += (window.innerWidth * 0.1)
     }
     this.currIdx = currIdx
   },

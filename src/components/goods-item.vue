@@ -4,12 +4,9 @@
   image.item-goods-img(:src="baseAssetsApi + goods.img"
   mode='scaleToFill')
   .item-goods-content-list
-    .title.item-goods-content
-      span {{goods.name}}
-    .goods-desc.item-goods-content
-      span {{goods.description}}
-    .price.item-goods-content
-      span ¥{{goods.min_price==goods.max_price?goods.min_price:goods.min_price+'~'+goods.max_price}}
+    .title.item-goods-content {{goods.name}}
+    .goods-desc.item-goods-content {{goods.description}}
+    .price.item-goods-content ¥{{goods.min_price==goods.max_price?goods.min_price:goods.min_price+' ~ '+goods.max_price}}
 </template>
 
 <script>
@@ -38,6 +35,7 @@
     padding: 5px 8px;
     max-width: 46%;
     max-height: 180px;
+    flex-shrink: 0;
   }
   .item-goods-content{
     margin: 10px 20px;
@@ -46,19 +44,26 @@
   }
   .item-goods-content-list{
     display:flex;
-    flex-grow: 1;
     flex-flow: column nowrap;
-    justify-content: space-around
-  }
-  .goods-desc{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    font-weight: lighter !important;
-    font-size: 12px;
-    padding-right: .2rem;
-    color: #858585;
+    justify-content: space-around;
+    max-width: 50%;
+    div{
+      font-weight: bold;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box!important;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .price {
+      color: #8b572a
+    }
+    .goods-desc{
+      font-weight: lighter;
+      font-size: 12px;
+      padding-right: 16px;
+      -webkit-line-clamp: 3;
+      color: #858585;
+    }
   }
 </style>

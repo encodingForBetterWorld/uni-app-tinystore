@@ -20,7 +20,8 @@ div
         div 商家正在确认收款
       .express-trace-item.latest(v-if="order.status==4")
         div 商家正在安排发货
-    .section.order-content-footer.btn-footer(v-if="order.code")
+    .section.order-content-footer(v-if="order.code"
+    :class="(order.status===0)?'btn-footer':''")
       div 订单号：{{order.code}}
       div(v-if="order.status==5 || order.status==1") 物流单号：{{order.express_code}}
       div 下单时间：{{order.create_time}}

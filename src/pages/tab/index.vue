@@ -1,12 +1,14 @@
 <template lang="pug">
 .container
   swiper.slider-wrap.section(
-  v-if="banners.length",
-  :indicator-dots="banners.length > 1",
-  :autoplay="banners.length > 1",
-  circular,
-  interval=5000,
-  duration=1000)
+  v-if="banners.length"
+  :indicator-dots="banners.length > 1"
+  :autoplay="banners.length > 1"
+  circular
+  interval=5000
+  duration=1000
+  indicator-color="rgba(190, 190, 190, .3)"
+  indicator-active-color="rgba(244, 53, 48 , .7)")
     swiper-item(
     v-for="(banner, index) of banners",
     :key="index")

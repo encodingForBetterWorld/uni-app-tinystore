@@ -77,6 +77,9 @@ const store = new Vuex.Store({
       state.totalCount = data
     },
     totalPrice (state, data) {
+      if (typeof data === 'number') {
+        data = data.toFixed(2)
+      }
       state.totalPrice = data
     },
     showNocontentStatus (state, data) {

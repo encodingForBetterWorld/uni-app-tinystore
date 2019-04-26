@@ -124,7 +124,7 @@ export default {
           break
         }
       }
-      v.$store.commit('totalPrice', totalPrice.toFixed(2))
+      v.$store.commit('totalPrice', totalPrice)
       v.list = list
       v.selectedList = selectedList
       cartAdd(cartId, cartData.select_count)
@@ -197,7 +197,7 @@ export default {
       v.btnText = null
       v.selectedList = selectedList
       if (selectedList.length > 0) {
-        v.$store.commit('totalPrice', totalPrice.toFixed(2))
+        v.$store.commit('totalPrice', totalPrice)
         v.btnText = '去结算'
       }
       this.checkedAll = selectedList.length === v.list.length
@@ -218,7 +218,7 @@ export default {
         item['checked'] = this.checkedAll
         v.list[idx] = item
       })
-      v.$store.commit('totalPrice', totalPrice.toFixed(2))
+      v.$store.commit('totalPrice', totalPrice)
       this.selectedList = selectedList
       if (!this.checkedAll) {
         this.btnText = null

@@ -212,7 +212,7 @@ export default {
       } else if (l > 1) {
         btnText = '合并付款'
       }
-      this.$store.commit('totalPrice', totalPrice.toFixed(2))
+      this.$store.commit('totalPrice', totalPrice)
       this.btnText = btnText
       this.checkedOrderIdxs = checkedOrderIdxs
       this.checkedAll = checkedOrderIdxs.length === orders.length
@@ -241,7 +241,7 @@ export default {
         order['checked'] = this.checkedAll
         v.orders[idx] = order
       })
-      v.$store.commit('totalPrice', totalPrice.toFixed(2))
+      v.$store.commit('totalPrice', totalPrice)
       this.checkedOrderIdxs = checkedOrderIdxs
       if (!this.checkedAll) {
         this.btnText = null

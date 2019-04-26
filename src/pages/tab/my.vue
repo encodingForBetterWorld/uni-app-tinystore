@@ -148,10 +148,10 @@ export default {
     },
     async getOrderListByPage () {
       if (this.page.page === this.page.page_max) return
-      this.page.page++
       const data = await api.getOrderList(
-        this.getStatus(this.headerOrderStatus), this.page.page
+        this.getStatus(this.headerOrderStatus), this.page.page + 1
       )
+      this.page.page++
       if (!data) return
       this.orders = this.orders.concat(data.orders)
       this.page = data.page

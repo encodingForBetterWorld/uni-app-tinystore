@@ -75,8 +75,8 @@ export default {
     },
     async getGoodsListByPage (e) {
       if (this.page.page === this.page.page_max) return
+      const data = await api.getGoodsList(this.page.page + 1)
       this.page.page++
-      const data = await api.getGoodsList(this.page.page)
       this.$store.commit('goodies', this.goodies.concat(data.goodses))
     }
   }

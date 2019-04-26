@@ -74,10 +74,14 @@ export default {
   onShow () {
     this.sectionIdx = 0
     this.modalDisable = false
+    this.initModal()
     this.initData()
   },
   methods: {
-    ...mapActions(['getOrderConfirmData']),
+    ...mapActions([
+      'getOrderConfirmData',
+      'initModal'
+    ]),
     toggleModal (e) {
       return this.$refs['modal'].toggleModal(e)
     },

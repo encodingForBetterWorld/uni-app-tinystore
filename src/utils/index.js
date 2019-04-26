@@ -23,25 +23,6 @@ export function formatTime (date) {
   return `${t1} ${t2}`
 }
 
-export function isVaildAddressForm (addressForm) {
-  let errMsg = null
-  if (!addressForm.name || !addressForm.phone || !addressForm.province || !addressForm.city || !addressForm.area || !addressForm.detail) {
-    errMsg = '条目均不能为空'
-  } else if (!(/^1[34578]\d{9}$/.test(addressForm.phone))) {
-    errMsg = '手机号码不合法'
-  }
-  if (errMsg) {
-    uni.showToast({
-      title: errMsg,
-      icon: '',
-      image: '/static/assets/error.png',
-      duration: 2000
-    })
-    return false
-  }
-  return true
-}
-
 export function cartCount () {
   let cartKeys = uni.getStorageSync('cart_keys')
   if (cartKeys) {

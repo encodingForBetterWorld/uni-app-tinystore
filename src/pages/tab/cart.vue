@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import cartItem from '@/components/cart-item'
 import customBtn from '@/components/custom-btn'
 import noContent from '@/components/nocontent'
@@ -56,7 +56,8 @@ export default {
   },
   computed: {
     ...mapState([
-      'totalPrice'
+      'totalPrice',
+      'showNocontentStatus'
     ])
   },
   onShow () {
@@ -64,7 +65,9 @@ export default {
     uni.startPullDownRefresh()
   },
   async onPullDownRefresh () {
+    this.$store.commit('showNocontentStatus', false)
     await this.initData()
+    this.$store.commit('showNocontentStatus', true)
     uni.stopPullDownRefresh()
   },
   methods: {

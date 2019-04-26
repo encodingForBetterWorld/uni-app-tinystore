@@ -9,7 +9,6 @@
 <script>
   import addressSection from '@/components/address-section'
   import customBtn from '@/components/custom-btn'
-  import { isVaildAddressForm } from '@/utils'
   import api from '@/utils/api'
   export default {
     components: {
@@ -30,7 +29,7 @@
       async editAddress (e) {
         const addrSection = this.$refs['address-section']
         const { addressForm } = addrSection.$props
-        if (!isVaildAddressForm(addressForm)) return
+        if (!addrSection.vaildAddressForm(addressForm)) return
         wx.showModal({
           title: '提示',
           content: '即将修改收获地址',

@@ -38,7 +38,7 @@ import orderSection from '@/components/order-section'
 import customModal from '@/components/custom-modal'
 import OrderFooter from '@/components/order-footer'
 import api from '@/utils/api'
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import btn from '@/utils/btn'
 export default {
   components: {
@@ -72,10 +72,14 @@ export default {
     }
   },
   onShow () {
+    this.initModal()
     this.initData()
   },
   methods: {
     ...btn,
+    ...mapActions([
+      'initModal'
+    ]),
     async initData () {
       const { query } = this.$route
       const data = await api.getOrder(query.id)

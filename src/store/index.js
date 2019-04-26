@@ -26,7 +26,9 @@ const store = new Vuex.Store({
 
     freight: 0,
     totalCount: 0,
-    totalPrice: 0
+    totalPrice: 0,
+
+    showNocontentStatus: false
   },
   mutations: {
     increment (state, t) {
@@ -76,6 +78,9 @@ const store = new Vuex.Store({
     },
     totalPrice (state, data) {
       state.totalPrice = data
+    },
+    showNocontentStatus (state, data) {
+      state.showNocontentStatus = data
     }
   },
   actions: {
@@ -124,6 +129,11 @@ const store = new Vuex.Store({
         commit('modalClass', modalClass + '-show')
         commit('showModalStatus', true)
       }
+    },
+    initModal ({ commit }) {
+      commit('modalClass', '')
+      commit('modalType', null)
+      commit('showModalStatus', false)
     }
   }
 })

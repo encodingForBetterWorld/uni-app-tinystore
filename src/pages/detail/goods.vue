@@ -35,11 +35,13 @@ export default {
   },
   onShow () {
     this.$store.commit('modalType', 'goods')
+    this.initModal()
     this.initData()
   },
   methods: {
     ...mapActions([
-      'getGoods'
+      'getGoods',
+      'initModal'
     ]),
     async initData () {
       const { query } = this.$route

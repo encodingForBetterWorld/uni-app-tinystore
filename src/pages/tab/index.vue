@@ -45,8 +45,10 @@ export default {
     uni.startPullDownRefresh()
   },
   async onPullDownRefresh () {
+    this.$store.commit('showNocontentStatus', false)
     await this.getHomeData()
     uni.stopPullDownRefresh()
+    this.$store.commit('showNocontentStatus', true)
   },
   methods: {
     ...mapActions([

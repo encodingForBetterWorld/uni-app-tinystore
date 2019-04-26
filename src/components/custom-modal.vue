@@ -94,7 +94,7 @@ div(v-if="showModalStatus")
 
 <script>
 import addressSection from '@/components/address-section'
-import { cartAdd, isVaildAddressForm } from '@/utils'
+import { cartAdd } from '@/utils'
 import api from '@/utils/api'
 import Clipboard from 'clipboard'
 import { mapState, mapActions, mapMutations } from 'vuex'
@@ -220,7 +220,7 @@ export default {
         this.toggleModal('close')
       } else if (currentIndex === '1') {
         // 检查数据
-        if (!isVaildAddressForm(addrSection.$props.addressForm)) return
+        if (!addrSection.vaildAddressForm(addrSection.$props.addressForm)) return
         new Promise(async (resolve, reject) => {
           let data = await api.postAddress(addrSection.$props.addressForm)
           if (!data) return
@@ -243,7 +243,6 @@ export default {
     },
     checkAddress (e) {
       this.selectedAddressIdx = e.detail.value
-      console.log(e.detail.value)
     },
     selectGoodsType: function (e) {
       let idx = Number(e.currentTarget.dataset['index'])
@@ -505,10 +504,10 @@ export default {
   .modal-content-goods-types-item{
     #text;
     width: 120px;
-    line-height: 20px;
+    line-height: 25px;
     vertical-align: middle;
     margin: 8px 4px;
-    padding: 5px 10px;
+    padding: 3px 8px;
     border: 1.5px solid #cacaca;
     text-align: center;
     font-size: 14px;

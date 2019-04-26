@@ -45,7 +45,7 @@ import orderItem from '@/components/order-item'
 import customBtn from '@/components/custom-btn'
 import customModal from '@/components/custom-modal'
 import noContent from '@/components/nocontent'
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import api from '@/utils/api'
 import btn from '@/utils/btn'
 import { setCartTabBarBadge } from '@/utils'
@@ -55,7 +55,8 @@ export default {
   },
   computed: {
     ...mapState([
-      'totalPrice'
+      'totalPrice',
+      'showNocontentStatus'
     ])
   },
   props: {
@@ -109,16 +110,22 @@ export default {
   },
   onShow () {
     this.headerOrderStatus = this.headerOrderStatus || 0
+    this.initModal()
     setCartTabBarBadge()
     uni.startPullDownRefresh()
   },
   async onPullDownRefresh () {
     this.isHeaderShow = void 0
+    this.$store.commit('showNocontentStatus', false)
     await this.initData()
+    this.$store.commit('showNocontentStatus', true)
     uni.stopPullDownRefresh()
   },
   methods: {
     ...btn,
+    ...mapActions([
+      'initModal'
+    ]),
     togglePayModal (e) {
       return this.$refs['modal'].togglePayModal(e)
     },

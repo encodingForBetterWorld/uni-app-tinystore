@@ -9,7 +9,6 @@
 <script>
   import addressSection from '@/components/address-section'
   import customBtn from '@/components/custom-btn'
-  import { isVaildAddressForm } from '@/utils'
   import api from '@/utils/api'
   export default {
     components: {
@@ -20,7 +19,7 @@
       async addAddress (e) {
         const addrSection = this.$refs['address-section']
         const { addressForm } = addrSection.$props
-        if (!isVaildAddressForm(addressForm)) return
+        if (!addrSection.vaildAddressForm(addressForm)) return
         const data = await api.postAddress(addressForm)
         if (!data) return
         uni.showToast({

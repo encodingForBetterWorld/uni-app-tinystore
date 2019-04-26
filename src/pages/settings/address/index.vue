@@ -35,9 +35,15 @@
   import btn from '@/utils/btn'
   import api from '@/utils/api'
   import noContent from '@/components/nocontent'
+  import { mapState } from 'vuex'
   export default {
     components: {
       noContent
+    },
+    computed: {
+      ...mapState([
+        'showNocontentStatus'
+      ])
     },
     props: {
       startX: null,
@@ -55,7 +61,9 @@
       this.initData()
     },
     async onPullDownRefresh () {
+      this.$store.commit('showNocontentStatus', false)
       await this.initData()
+      this.$store.commit('showNocontentStatus', true)
       uni.stopPullDownRefresh()
     },
     methods: {

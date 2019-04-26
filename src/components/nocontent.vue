@@ -1,11 +1,12 @@
 <template lang="pug">
-.no-content-wrapper(v-if="isShow")
+.no-content-wrapper(v-if="showNocontentStatus")
   image.no-content-img(src="/static/assets/empty.png"
   mode='scaleToFill')
   .no-content-text {{text}}
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   export default {
     props: {
       text: {
@@ -13,19 +14,12 @@
         default () {
           return ''
         }
-      },
-      isShow: {
-        Object: Boolean,
-        default () {
-          return false
-        }
       }
     },
-    mounted () {
-      const v = this
-      setTimeout(() => {
-        v.isShow = true
-      }, 1000)
+    computed: {
+      ...mapState([
+        'showNocontentStatus'
+      ])
     }
   }
 </script>

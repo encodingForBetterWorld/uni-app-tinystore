@@ -188,7 +188,7 @@ export default {
           })
           if (data) {
             v.qrcode = data.qrcode
-            v.qrcodePrice = data.qrcode_price
+            v.qrcodePrice = (typeof data.qrcode_price === 'number') ? data.qrcode_price.toFixed(2) : 0
             v.orderIds = orderIds
             resolve()
           }

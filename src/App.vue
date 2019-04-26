@@ -25,7 +25,7 @@ export default {
     height: 36px;
   }
   .section{
-    margin: 5px 0;
+    margin: 2.5px 0;
   }
   .section-item{
     width: 100%;
@@ -374,5 +374,13 @@ export default {
   }
   .btn-footer {
     margin-bottom: 50px!important;
+  }
+  .nomore {
+    width: 100%;
+    line-height: 32px;
+    text-align: center;
+    font-size: 14px;
+    color: #989898;
+    opacity: .5;
   }
 </style>

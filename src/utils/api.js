@@ -8,6 +8,9 @@ const api = {
   getGoods: (id) => request.get(`/goods_detail?goods_id=${id}`, null, {
     baseURL: baseUrlApi
   }),
+  getGoodsList: (page) => request.get(`/goods_list?page=${page}`, null, {
+    baseURL: baseUrlApi
+  }),
   getOrderConfirmData: (data) => request.get(`/order_confirm_data?goods_types=${data}`, null, {
     baseURL: baseUrlApi
   }),
@@ -23,8 +26,9 @@ const api = {
   getCartList: (data) => request.get(`/cart_list?goods_types=${data}`, null, {
     baseURL: baseUrlApi
   }),
-  getOrderList: (status) => request.get('order_list', {
-    status: status
+  getOrderList: (status, page) => request.get('order_list', {
+    status: status,
+    page: page
   }, {
     baseURL: baseUrlApi
   }),

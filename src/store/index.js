@@ -99,6 +99,7 @@ const store = new Vuex.Store({
       if (!homeData) return
       commit('banners', homeData.banners)
       commit('goodies', homeData.goodses)
+      return homeData
     },
     async setAddresses ({ commit }, data) {
       if (!data) {

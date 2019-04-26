@@ -20,14 +20,16 @@ div
             div {{orderSection[1]}}
     scroll-view.section.my-order-list(v-if="orders.length > 0"
     scroll-y
-    @scroll="scrollOrderList")
+    @scroll="scrollOrderList"
+    @scrolltolower="getOrderListByPage")
       .my-order-list-blank
       checkbox-group(@change="checkOrderPay")
         order-item(v-for="(item, index) of orders"
         :item="item"
         :index="index"
         :checked="item.checked")
-      .btn-footer(v-if="headerOrderStatus==0")
+        .nomore(v-if="page.page===page.page_max") 没有更多订单了
+        .btn-footer(v-if="headerOrderStatus==0")
     no-content(v-else
     :text="'暂无'+ orderSelections[headerOrderStatus||0][1] +'订单'")
     custom-btn(v-if="(btnText != void 0) && (headerOrderStatus===0)"
@@ -108,6 +110,14 @@ export default {
       }
     }
   },
+  data: function () {
+    return {
+      page: {
+        page: 1,
+        page_max: 0
+      }
+    }
+  },
   onShow () {
     this.headerOrderStatus = this.headerOrderStatus || 0
     this.initModal()
@@ -136,16 +146,32 @@ export default {
         this.isHeaderShow = 1
       }
     },
+    async getOrderListByPage () {
+      if (this.page.page === this.page.page_max) return
+      this.page.page++
+      const data = await api.getOrderList(
+        this.getStatus(this.headerOrderStatus), this.page.page
+      )
+      if (!data) return
+      this.orders = this.orders.concat(data.orders)
+      this.page = data.page
+      this.checkedAll = false
+    },
     async initData () {
+      this.page = {
+        page: 1,
+        page_max: 0
+      }
       this.orders = []
       this.orderIds = []
       this.$store.commit('totalPrice', 0)
       this.btnText = null
       const data = await api.getOrderList(
-        this.getStatus(this.headerOrderStatus)
+        this.getStatus(this.headerOrderStatus), this.page.page
       )
       if (!data) return
-      this.orders = data
+      this.orders = data.orders
+      this.page = data.page
     },
     getStatus: function (status) {
       switch (status) {

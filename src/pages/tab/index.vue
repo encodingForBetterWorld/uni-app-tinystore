@@ -15,11 +15,13 @@
       image.slider-item(:src="baseAssetsApi + banner.img"
       mode='scaleToFill'
       @click="turn(banner)")
-  .section.container-goods.btn-footer(v-if="goodies&&goodies.length>0")
-    goods-item(
-    v-for="goods of goodies",
+  scroll-view.section.container-goods(v-if="goodies&&goodies.length>0"
+  scroll-y
+  @scrolltolower="getGoodsListByPage")
+    goods-item(v-for="goods of goodies",
     :goods="goods"
     :key="goods.id")
+    .nomore(v-if="page.page===page.page_max") 没有更多商品了
   no-content(v-else
   text='暂无商品')
 </template>
@@ -29,6 +31,7 @@ import { mapState, mapActions } from 'vuex'
 import goodsItem from '@/components/goods-item'
 import { setCartTabBarBadge } from '@/utils'
 import noContent from '@/components/nocontent'
+import api from '@/utils/api'
 export default {
   components: {
     goodsItem,
@@ -40,15 +43,25 @@ export default {
       'goodies'
     ])
   },
+  data: function () {
+    return {
+      page: {
+        page: 1,
+        page_max: 0
+      }
+    }
+  },
   onShow () {
     setCartTabBarBadge()
     uni.startPullDownRefresh()
   },
   async onPullDownRefresh () {
     this.$store.commit('showNocontentStatus', false)
-    await this.getHomeData()
-    uni.stopPullDownRefresh()
+    const data = await this.getHomeData()
     this.$store.commit('showNocontentStatus', true)
+    if (!data) return
+    this.page = data.page
+    uni.stopPullDownRefresh()
   },
   methods: {
     ...mapActions([
@@ -59,6 +72,12 @@ export default {
       uni.navigateTo({
         url: url || `/pages/detail/goods?goodsId=${goods}`
       })
+    },
+    async getGoodsListByPage (e) {
+      if (this.page.page === this.page.page_max) return
+      this.page.page++
+      const data = await api.getGoodsList(this.page.page)
+      this.$store.commit('goodies', this.goodies.concat(data.goodses))
     }
   }
 }
@@ -74,5 +93,10 @@ export default {
     display: block;
     width: 100%;
     height: 100%;
+  }
+  .container-goods {
+    position: absolute;
+    top: 218px;
+    bottom: 0;
   }
 </style>

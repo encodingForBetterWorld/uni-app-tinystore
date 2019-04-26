@@ -1,5 +1,6 @@
 <template lang="pug">
-.container
+scroll-view.container(scroll-y
+@scrolltolower="getGoodsListByPage")
   swiper.slider-wrap.section(
   v-if="banners.length"
   :indicator-dots="banners.length > 1"
@@ -15,9 +16,7 @@
       image.slider-item(:src="baseAssetsApi + banner.img"
       mode='scaleToFill'
       @click="turn(banner)")
-  scroll-view.section.container-goods(v-if="goodies&&goodies.length>0"
-  scroll-y
-  @scrolltolower="getGoodsListByPage")
+  .section.container-goods(v-if="goodies&&goodies.length>0")
     goods-item(v-for="goods of goodies",
     :goods="goods"
     :key="goods.id")
@@ -94,9 +93,9 @@ export default {
     width: 100%;
     height: 100%;
   }
-  .container-goods {
+  .container {
     position: absolute;
-    top: 218px;
+    top: 0;
     bottom: 0;
   }
 </style>

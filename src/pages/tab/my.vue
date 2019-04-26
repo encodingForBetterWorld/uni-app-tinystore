@@ -154,7 +154,10 @@ export default {
       this.page.page++
       if (!data) return
       this.orders = this.orders.concat(data.orders)
-      this.page = data.page
+      this.page = data.page || {
+        page: 1,
+        page_max: 1
+      }
       this.checkedAll = false
     },
     async initData () {

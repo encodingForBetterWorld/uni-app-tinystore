@@ -59,7 +59,10 @@ export default {
     const data = await this.getHomeData()
     this.$store.commit('showNocontentStatus', true)
     if (!data) return
-    this.page = data.page
+    this.page = data.page || {
+      page: 1,
+      page_max: 1
+    }
     uni.stopPullDownRefresh()
   },
   methods: {

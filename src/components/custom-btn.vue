@@ -10,7 +10,7 @@
   .wrapper-btn-confirm-pay
     .btn-pay-price
       span 共计：¥
-      span {{totalPrice}}
+      span {{ totalPrice && totalPrice.toFixed(2) }}
     .btn-confirm-pay(@click="click") {{text}}
 </template>
 

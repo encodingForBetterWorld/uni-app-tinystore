@@ -71,6 +71,9 @@ const store = new Vuex.Store({
       state.modalType = data
     },
     freight (state, data) {
+      if (typeof data === 'number') {
+        data = Number(data.toFixed(2))
+      }
       state.freight = data
     },
     totalCount (state, data) {
@@ -78,7 +81,7 @@ const store = new Vuex.Store({
     },
     totalPrice (state, data) {
       if (typeof data === 'number') {
-        data = data.toFixed(2)
+        data = Number(data.toFixed(2))
       }
       state.totalPrice = data
     },

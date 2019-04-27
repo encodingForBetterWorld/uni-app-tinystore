@@ -84,9 +84,9 @@ div(v-if="showModalStatus")
           #qrcode-price(:data-clipboard-text="qrcodePrice")
             span ¥
             label {{qrcodePrice}}
-          image.fa-icon.modal-section-pay-price-copy(:data-clipboard-text="qrcodePrice"
-          src='/static/assets/fa-copy.png'
-          mode='scaleToFill')
+            image.fa-icon.modal-section-pay-price-copy(:data-clipboard-text="qrcodePrice"
+            src='/static/assets/fa-copy.png'
+            mode='scaleToFill')
       .modal-section-pay-btngroup
         .pay-btn-close(@click="togglePayModal" data-status="close") 稍后支付
         .pay-btn-confirm(@click="togglePayModal" data-status="close") 扫码支付
@@ -439,7 +439,6 @@ export default {
   }
   .modal-section-pay-price-copy{
     position: absolute;
-    right: -48px;
     bottom: -6px;
   }
   .modal-close-btn-o{

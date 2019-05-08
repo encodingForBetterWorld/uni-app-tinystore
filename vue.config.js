@@ -5,7 +5,6 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        xmlstring2json: 'xmlstring2json/dist/xml2json.min.js',
         flyio: UNI_PLATFORM !== 'h5' ? 'flyio/dist/npm/wx' : 'flyio/dist/npm/fly'
       }
     },

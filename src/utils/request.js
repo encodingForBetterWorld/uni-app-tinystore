@@ -1,9 +1,12 @@
 import Fly from 'flyio'
-import { baseUrlApi } from './index'
+import { baseUrlApi, platform } from './index'
 
 const request = new Fly()
 
 request.interceptors.request.use((req) => {
+  if (platform !== 'h5') {
+    req.headers.cookie = uni.getStorageSync('cookie')
+  }
   uni.showNavigationBarLoading()
   return req
 })
@@ -15,7 +18,8 @@ request.interceptors.response.use(
       // cookie expired, redo login
       await request.get('/h5_auth', null, {
         baseURL: baseUrlApi
-      }).then(async _res => {
+      }).then(async (_res) => {
+        (platform !== 'h5') && uni.setStorageSync('cookie', _res['set-cookie'][0])
         await request.get(res.request.url, res.request.body, {
           baseURL: res.request.baseURL
         }).then(_res => {
@@ -29,6 +33,9 @@ request.interceptors.response.use(
       })
     } else {
       ret = res.data.data
+    }
+    if (res.request.url === '/h5_auth') {
+      ret = res.headers
     }
     uni.hideNavigationBarLoading()
     return promise.resolve(ret)

@@ -5,17 +5,17 @@
       div 商品金额：
       div
         span.money-logo ¥
-        label {{totalPrice && totalPrice.toFixed(2)}}
+        label {{totalPrice && totalPrice}}
     div
       div 运费：
       div
         span.money-logo ¥
-        label {{ freight && freight.toFixed(2)}}
+        label {{ freight && freight }}
     div
       div 实付款：
       .money-logo-line
         .money-logo-lg ¥
-        div {{ (totalPrice+freight) && (totalPrice+freight).toFixed(2) }}
+        div {{ (totalPrice+freight) && (totalPrice+freight) }}
 </template>
 
 <script>

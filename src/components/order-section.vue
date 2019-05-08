@@ -14,6 +14,7 @@
       span {{order.count}}
 </template>
 <script>
+  import { mapState } from 'vuex'
 export default {
   props: {
     order: {
@@ -22,6 +23,9 @@ export default {
         return {}
       }
     }
+  },
+  computed: {
+    ...mapState(['baseAssetsApi'])
   }
 }
 </script>

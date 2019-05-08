@@ -14,7 +14,7 @@
     .pl-settings-item.settings-system-item(@click="turn('https://github.com/encodingForBetterWorld/uni-app-tinyStore/', true)")
       span 项目源码
       i.arrow.arrow-right
-</template>aa
+</template>
 
 <script>
   export default {

@@ -155,7 +155,6 @@ export default {
       this.addressForm = Object.assign(this.addressForm, form)
     },
     inputAddressFrom (e) {
-      console.log(e)
       let msg = {}
       msg[e.currentTarget.dataset.name] = null
       this.errMsgs = Object.assign(this.errMsgs, msg)

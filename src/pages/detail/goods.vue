@@ -41,7 +41,8 @@ export default {
   methods: {
     ...mapActions([
       'getGoods',
-      'initModal'
+      'initModal',
+      'baseAssetsApi'
     ]),
     async initData () {
       const { query } = this.$route

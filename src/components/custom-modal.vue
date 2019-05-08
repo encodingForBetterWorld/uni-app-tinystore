@@ -128,7 +128,8 @@ export default {
       'addresses',
       'showModalStatus',
       'modalClass',
-      'modalType'
+      'modalType',
+      'baseAssetsApi'
     ])
   },
   mounted () {

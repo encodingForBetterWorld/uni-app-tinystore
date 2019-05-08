@@ -10,7 +10,7 @@ div
         mode="scaleToFill")
         .user-name {{userInfo.nickName}}
       .user-order(:class="'d-user-order-animate-'+((isHeaderShow===1&&'show')||(isHeaderShow===0&&'hide')||'none')")
-        .my-order-title(:style="'opacity:'+(((isHeaderShow===void 0)||(isHeaderShow===1)) ? '1':'0')") 我的订单
+        .my-order-title(:style="'opacity:'+(((isHeaderShow===null)||(isHeaderShow===1)) ? '1':'0')") 我的订单
         .my-order-selection-group
           .my-order-selection(v-for="(orderSection, idx) of orderSelections"
           :class="headerOrderStatus==idx?'text-select':''"
@@ -28,11 +28,11 @@ div
         :item="item"
         :index="index"
         :checked="item.checked")
-        .nomore(v-if="page.page===page.page_max") 没有更多订单了
+        .nomore(v-if="page.page<=page.page_max") {{(page.page===page.page_max)?'没有更多订单了': '数据加载中...'}}
         .btn-footer(v-if="headerOrderStatus==0")
     no-content(v-else
     :text="'暂无'+ orderSelections[headerOrderStatus||0][1] +'订单'")
-    custom-btn(v-if="(btnText != void 0) && (headerOrderStatus===0)"
+    custom-btn(v-if="(btnText != null) && (headerOrderStatus===0)"
     btnType='pay'
     :text="btnText"
     :checked="checkedAll"
@@ -66,13 +66,13 @@ export default {
     btnText: {
       type: String,
       default () {
-        return void 0
+        return null
       }
     },
     isHeaderShow: {
       type: Number,
       default () {
-        return void 0
+        return null
       }
     },
     orders: {
@@ -125,7 +125,7 @@ export default {
     uni.startPullDownRefresh()
   },
   async onPullDownRefresh () {
-    this.isHeaderShow = void 0
+    this.isHeaderShow = null
     this.$store.commit('showNocontentStatus', false)
     await this.initData()
     this.$store.commit('showNocontentStatus', true)
@@ -140,7 +140,7 @@ export default {
       return this.$refs['modal'].togglePayModal(e)
     },
     scrollOrderList (e) {
-      if (e.detail.scrollTop > 128 && e.detail.deltaY < 0 && (this.isHeaderShow === 1 || this.isHeaderShow === void 0)) {
+      if (e.detail.scrollTop > 128 && e.detail.deltaY < 0 && (this.isHeaderShow === 1 || this.isHeaderShow === null)) {
         this.isHeaderShow = 0
       } else if (e.detail.scrollTop < 128 && e.detail.deltaY > 0 && this.isHeaderShow === 0) {
         this.isHeaderShow = 1

@@ -48,7 +48,8 @@ export default {
   },
   computed: {
     ...mapState([
-      'totalPrice'
+      'totalPrice',
+      'baseAssetsApi'
     ])
   },
   methods: {

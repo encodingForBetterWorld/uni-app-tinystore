@@ -13,14 +13,14 @@
       "disableHostCheck": true,
       "proxy": {
         "/api": {
-          "target": "http://localhost:8000/api",
+          "target": "https://app.33code.online/api",
           "changeOrigin": true,
           "pathRewrite": {
             "^/api": ""
           }
         },
         "/assets": {
-          "target": "http://localhost:8000/assets",
+          "target": "https://app.33code.online/assets",
           "changeOrigin": true,
           "pathRewrite": {
             "^/assets": ""

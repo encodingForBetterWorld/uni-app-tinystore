@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState } from 'vuex'
 import cartItem from '@/components/cart-item'
 import customBtn from '@/components/custom-btn'
 import noContent from '@/components/nocontent'
@@ -57,7 +57,8 @@ export default {
   computed: {
     ...mapState([
       'totalPrice',
-      'showNocontentStatus'
+      'showNocontentStatus',
+      'baseAssetsApi'
     ])
   },
   onShow () {

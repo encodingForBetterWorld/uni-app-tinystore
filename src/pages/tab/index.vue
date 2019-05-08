@@ -20,7 +20,7 @@ scroll-view.container(scroll-y
     goods-item(v-for="goods of goodies",
     :goods="goods"
     :key="goods.id")
-    .nomore(v-if="page.page===page.page_max") 没有更多商品了
+    .nomore(v-if="page.page<=page.page_max") {{(page.page===page.page_max)?'没有更多商品了': '数据加载中...'}}
   no-content(v-else
   text='暂无商品')
 </template>
@@ -39,7 +39,8 @@ export default {
   computed: {
     ...mapState([
       'banners',
-      'goodies'
+      'goodies',
+      'baseAssetsApi'
     ])
   },
   data: function () {

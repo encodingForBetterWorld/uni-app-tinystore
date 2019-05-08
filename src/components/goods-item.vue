@@ -10,6 +10,7 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   export default {
     props: {
       goods: {
@@ -18,6 +19,9 @@
           return {}
         }
       }
+    },
+    computed: {
+      ...mapState(['baseAssetsApi'])
     },
     methods: {
       turn () {

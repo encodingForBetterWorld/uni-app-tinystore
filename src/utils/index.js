@@ -7,6 +7,8 @@ export const platform = process.env.UNI_PLATFORM
 
 export const baseUrlApi = '/api'
 
+export const baseAssetsApi = '/assets/tinystore/'
+
 export function formatTime (date) {
   date = new Date(date)
   const year = date.getFullYear()
